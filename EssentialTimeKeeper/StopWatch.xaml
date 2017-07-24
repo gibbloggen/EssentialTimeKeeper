@@ -38,16 +38,23 @@
 				<ListBox SelectionMode="Single" 
                          Tapped="Menu_Tapped"   >
 
+					
+					<ListBoxItem Name="Clock">
+						<StackPanel Orientation="Horizontal">
+							<!--<TextBlock FontFamily="Segoe MDL2 Assets" FontSize="36" Text="&#xE898;" />-->
+							<TextBlock FontSize="24" Margin="20,0,0,0">Clock</TextBlock>
+						</StackPanel>
+					</ListBoxItem>
 					<ListBoxItem Name="Chronograph">
 						<StackPanel Orientation="Horizontal">
 							<!--<TextBlock FontFamily="Segoe MDL2 Assets" FontSize="36" Text="&#xE78B;" />-->
 							<TextBlock FontSize="24" Margin="20,0,0,0">Stop Watch</TextBlock>
 						</StackPanel>
 					</ListBoxItem>
-					<ListBoxItem Name="Clock">
+					<ListBoxItem Name="Help">
 						<StackPanel Orientation="Horizontal">
-							<!--<TextBlock FontFamily="Segoe MDL2 Assets" FontSize="36" Text="&#xE898;" />-->
-							<TextBlock FontSize="24" Margin="20,0,0,0">Clock</TextBlock>
+							<!--<TextBlock FontFamily="Segoe MDL2 Assets" FontSize="36" Text="&#xE78B;" />-->
+							<TextBlock FontSize="24" Margin="20,0,0,0">Help</TextBlock>
 						</StackPanel>
 					</ListBoxItem>
 					<ListBoxItem Name="MakeDonation">
@@ -56,7 +63,6 @@
 							<TextBlock FontSize="24" Margin="20,0,0,0">Donation</TextBlock>
 						</StackPanel>
 					</ListBoxItem>
-
 				</ListBox>
 			</SplitView.Pane>
 			<SplitView.Content >

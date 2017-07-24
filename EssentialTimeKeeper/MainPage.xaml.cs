@@ -33,7 +33,7 @@ namespace EssentialTimeKeeper
 		public MainPage()
 		{
 			this.InitializeComponent();
-			FrameWork.Content = new StopWatch();
+			FrameWork.Content = new Clocker();
 		}
 
 	}	

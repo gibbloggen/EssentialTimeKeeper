@@ -40,9 +40,11 @@ namespace EssentialTimeKeeper
 
 		{
 
+		
+
 			ClockerOutput.Height = Window.Current.Bounds.Height;
 			ClockerOutput.Width = Window.Current.Bounds.Width;
-			ClockerOutput.FontSize = 89 + ((ClockerOutput.Width - 250) / 6);
+			ClockerOutput.FontSize = 89 + ((ClockerOutput.Width - 450) / 6);
 			return;
 
 
@@ -153,6 +155,7 @@ namespace EssentialTimeKeeper
 
 		}
 
+
 		private void Menu_Tapped(object sender, TappedRoutedEventArgs e)
 		{
 			if (Chronograph.IsSelected)
@@ -160,24 +163,30 @@ namespace EssentialTimeKeeper
 				Frame Parental = (Frame)this.Parent;
 
 				Parental.Content = new StopWatch();
-				return;
 
 
 
 			}
 			else if (Clock.IsSelected)
 			{
-				Frame Parental = (Frame)this.Parent;
-
-				Parental.Content = new Clocker();
-
+				MySplitView.IsPaneOpen = false;
+				return;
 			}
 			else if (MakeDonation.IsSelected)
 			{
+				Frame Parental = (Frame)this.Parent;
 
+				Parental.Content = new Donate();
 			}
-		}
+			else if (Help.IsSelected)
+			{
+				Frame Parental = (Frame)this.Parent;
 
+				Parental.Content = new HelpPage();
+			}
+
+
+		}
 		private void HamburgerButton_Click(object sender, RoutedEventArgs e)
 		{
 

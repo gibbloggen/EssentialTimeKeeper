@@ -1,11 +1,15 @@
 ﻿<Page
-    x:Class="EssentialTimeKeeper.Clocker"
+    x:Class="EssentialTimeKeeper.HelpPage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:EssentialTimeKeeper"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
+
+
+
+
 
 	<Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" Name="MainGrid" >
 		<RelativePanel  >
@@ -18,7 +22,7 @@
                     />
 
 			<TextBlock Name="EssentialTimeKeeper "
-                   RelativePanel.AlignHorizontalCenterWithPanel="True" Text="The Colorful Clock"
+                   RelativePanel.AlignHorizontalCenterWithPanel="True" Text="Help"
                   FontSize="32" FontWeight="ExtraBold"/>
 			<!-- Text="Essential Grocer" -->
 
@@ -38,7 +42,7 @@
 				<ListBox SelectionMode="Single" 
                          Tapped="Menu_Tapped"   >
 
-					
+
 					<ListBoxItem Name="Clock">
 						<StackPanel Orientation="Horizontal">
 							<!--<TextBlock FontFamily="Segoe MDL2 Assets" FontSize="36" Text="&#xE898;" />-->
@@ -68,15 +72,11 @@
 			</SplitView.Pane>
 			<SplitView.Content >
 
-
-				<StackPanel Orientation="Vertical" Margin="7,75,0,0" >
-					<TextBox Name="ClockerOutput" Margin="0,0,0,0"   TextWrapping="NoWrap" BorderThickness="0" Background="Green" IsReadOnly="True"  Text="00:00:00.00" VerticalAlignment="Top" TextAlignment="Center" HorizontalAlignment="Center" Width="449" FontFamily="Times New Roman" FontSize="89"/>
-					
+				<WebView Name="HelpView">
+				</WebView>
 
 
-				</StackPanel>
 			</SplitView.Content>
 		</SplitView>
 	</Grid>
-
 </Page>

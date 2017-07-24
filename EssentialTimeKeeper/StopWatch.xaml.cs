@@ -259,6 +259,7 @@ namespace EssentialTimeKeeper
 		{
 			if (Chronograph.IsSelected)
 			{
+				MySplitView.IsPaneOpen = false;
 				return;
 
 
@@ -266,14 +267,22 @@ namespace EssentialTimeKeeper
 			}
 			else if (Clock.IsSelected)
 			{
-				Frame Parental = (Frame) this.Parent;
+				Frame Parental = (Frame)this.Parent;
 
 				Parental.Content = new Clocker();
 
 			}
 			else if (MakeDonation.IsSelected)
 			{
+				Frame Parental = (Frame)this.Parent;
 
+				Parental.Content = new Donate();
+			}
+			else if (Help.IsSelected)
+			{
+				Frame Parental = (Frame)this.Parent;
+
+				Parental.Content = new HelpPage();
 			}
 
 
