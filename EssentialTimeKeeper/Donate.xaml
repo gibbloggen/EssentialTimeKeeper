@@ -71,73 +71,35 @@
 	</Page.Resources>
 
 	<Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" Name="MainGrid" >
-			<RelativePanel  >
-				<Button Name="HamburgerButton" 
-                    RelativePanel.AlignLeftWithPanel="True"
-                    FontFamily="Segoe MDL2 Assets"
-                    FontSize="36" 
-                    Content="&#xE700;" 
-                    Click="HamburgerButton_Click"
-                    />
-
-				<TextBlock Name="EssentialTimeKeeper "
-                   RelativePanel.AlignHorizontalCenterWithPanel="True" Text="Please Donate"
-                  FontSize="32" FontWeight="ExtraBold"/>
-				<!-- Text="Essential Grocer" -->
-
-
-			</RelativePanel>
-
-			<SplitView 
-                   
-                   Name="MySplitView"
-                   DisplayMode="CompactOverlay"
-                   
-                   CompactPaneLength="0"
-                     OpenPaneLength="225"
-                
-                   >
-				<SplitView.Pane>
-					<ListBox SelectionMode="Single" 
-                         Tapped="Menu_Tapped"   >
-
-
-						<ListBoxItem Name="Clock">
-							<StackPanel Orientation="Horizontal">
-								<!--<TextBlock FontFamily="Segoe MDL2 Assets" FontSize="36" Text="&#xE898;" />-->
-								<TextBlock FontSize="24" Margin="20,0,0,0">Clock</TextBlock>
-							</StackPanel>
-						</ListBoxItem>
-						<ListBoxItem Name="Chronograph">
-							<StackPanel Orientation="Horizontal">
-								<!--<TextBlock FontFamily="Segoe MDL2 Assets" FontSize="36" Text="&#xE78B;" />-->
-								<TextBlock FontSize="24" Margin="20,0,0,0">Stop Watch</TextBlock>
-							</StackPanel>
-						</ListBoxItem>
-						<ListBoxItem Name="Help">
-							<StackPanel Orientation="Horizontal">
-								<!--<TextBlock FontFamily="Segoe MDL2 Assets" FontSize="36" Text="&#xE78B;" />-->
-								<TextBlock FontSize="24" Margin="20,0,0,0">Help</TextBlock>
-							</StackPanel>
-						</ListBoxItem>
-						<ListBoxItem Name="MakeDonation">
-							<StackPanel Orientation="Horizontal">
-								<!--<TextBlock FontFamily="Segoe MDL2 Assets" FontSize="36" Text="&#xE78C;" />-->
-								<TextBlock FontSize="24" Margin="20,0,0,0">Donation</TextBlock>
-							</StackPanel>
-						</ListBoxItem>
-
-					</ListBox>
-				</SplitView.Pane>
-				<SplitView.Content >
 				<StackPanel Orientation="Vertical">
+
+			<StackPanel Orientation="Horizontal" Name="Icons" HorizontalAlignment="Center" Margin="0,25,0,0" >
+
+				<Button Name="Clock" Template="{StaticResource HoveringButton}"  Margin="0,0,8,3"  Tapped="Clock_Tapped" FontFamily="WingDings" Width="75" Height="75"  FontSize="35" Content="&#x00B7;"></Button>
+				<Button Name="Help" Template="{StaticResource HoveringButton}"  Margin="0,0,8,3"  Tapped="Help_Tapped" FontFamily="Segoe MDL2 Assets" Width="75" Height="75" FontSize="35" Content="&#xE897;"></Button>
+				<Button Name="Chronograph" Template="{StaticResource HoveringButton}"  Margin="0,0,8,3" FontFamily="WingDings" Tapped="Chronograph_Tapped" Width="75" Height="75"  FontSize="35" Content="6"></Button>
+
+			</StackPanel>
+
+			<ProgressRing x:Name="workingProgressRing"/>
+			<StackPanel Orientation="Vertical"  CornerRadius="15" Margin="175,15,175,35" BorderThickness="5" BorderBrush="Black" >
+				<TextBlock FontFamily="Courier New" FontSize="38" Text="Donate Here"  TextAlignment="Center"/>
+				<TextBlock   TextWrapping="Wrap" FontFamily="Courier New" FontSize="18" Margin="15,0,15,15" > 
+					<LineBreak /> Your donations are greatly appreciated.  They enable us to bring you new products, as well as product enhancements.  Future developments get fueld by your contributions.
 					
-					<ProgressRing x:Name="workingProgressRing"/>
-					<Button x:Uid="MakeDonation" IsEnabled="False"  Template="{StaticResource HoveringButton}"  Margin="0,24,0,0"  HorizontalAlignment="Center" Width="200" Name="makeDonation" >Make Donation</Button>
+						
+						<LineBreak /><LineBreak />   We are trying to make this a self sustaining entity, but we are a long way away from this.  Currently
+					we supply this app, as well as "Essential Video Recorder" and "Essential Time Lapse Video."  These are all donationware.
+					<LineBreak /><LineBreak /> Any contribution, no matter how small is greatly appreciated.   
+					<LineBreak /><LineBreak /> Thanks, John Leone dba Essential Software Products.
+					<LineBreak />
+
+				</TextBlock>
+			</StackPanel>
 					<StackPanel Orientation="Horizontal" Name="Donator"  Visibility="Visible" HorizontalAlignment="Center">
-					<Button x:Uid="Donation1" Template="{StaticResource HoveringButton}"  Margin="0,22,12,0" Width="54" Name="Donation1" Tapped="Donation1_Tapped">$1</Button>
-					<Button x:Uid="Donation2" Template="{StaticResource HoveringButton}"  Margin="0,22,12,0" Width="54" Name="Donation2" Tapped="Donation2_Tapped">$2</Button>
-					<Button x:Uid="Donation3" Template="{StaticResource HoveringButton}"  Margin="0,22,12,0" Width="54" Name="Donation3" Tapped="Donation3_Tapped">$3</Button>
+					<Button x:Uid="Donation1" Template="{StaticResource HoveringButton}"  Margin="0,22,12,0" Width="95" Height="85" Name="Donation1" Tapped="Donation1_Tapped">$1</Button>
+				<Button x:Uid="Donation2" Template="{StaticResource HoveringButton}"  Margin="0,22,12,0" Width="95" Height="85" Name="Donation2" Tapped="Donation2_Tapped">$2</Button>
+				<Button x:Uid="Donation3" Template="{StaticResource HoveringButton}"  Margin="0,22,12,0" Width="95" Height="85" Name="Donation3" Tapped="Donation3_Tapped">$3</Button>
 					</StackPanel>
 					<TextBox Name="storeResult" Background="Red" Visibility="Collapsed"  VerticalContentAlignment="Center" HorizontalAlignment="Center" Width="457" Margin="0,24,0,0" />
 					<TextBox x:Uid="ManyThanks" HorizontalAlignment="Center" VerticalContentAlignment="Center" TextAlignment="Center" Name="ManyThanks" IsReadOnly="True"  Background="LawnGreen" Foreground="Black" Margin="0,24,0,0" Width="325" Visibility="Collapsed"  Text="Many Thanks!"/>
@@ -146,9 +108,9 @@
 				</StackPanel>
 
 
-			</SplitView.Content>
+	
 				
 				
-			</SplitView>
+		
 		</Grid>
 </Page>

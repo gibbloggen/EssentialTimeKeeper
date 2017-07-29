@@ -75,7 +75,7 @@ namespace EssentialTimeKeeper
 
 		}
 
-
+/*
 		private void Menu_Tapped(object sender, TappedRoutedEventArgs e)
 		{
 			if (Chronograph.IsSelected)
@@ -108,10 +108,59 @@ namespace EssentialTimeKeeper
 
 
 		}
-		private void HamburgerButton_Click(object sender, RoutedEventArgs e)
+		
+	*/
+		private void Clock_Tapped(object sender, TappedRoutedEventArgs e)
+		{
+			Frame Parental = (Frame)this.Parent;
+			HelpPage HelperToClose = (HelpPage)Parental.Content;
+			
+				Uri getItDone = new Uri("http://zzztttyyyqqq.grtbdbsdsa.cat");
+
+				HelperToClose.HelpView.Navigate(getItDone);
+			
+		
+			Parental.Content = new Clocker();
+
+			//Frame Parental = (Frame)this.Parent;
+			Grid j = (Grid)Parental.Parent;
+			MainPage k = (MainPage)j.Parent;
+			k.getSmallAgain();
+			
+
+
+
+		}
+
+		private void Chronograph_Tapped(object sender, TappedRoutedEventArgs e)
 		{
 
-			MySplitView.IsPaneOpen = !MySplitView.IsPaneOpen;
+
+			Frame Parental = (Frame)this.Parent;
+			Grid j = (Grid)Parental.Parent;
+			MainPage k = (MainPage)j.Parent;
+
+			HelpPage HelperToClose = (HelpPage)Parental.Content;
+
+			Uri getItDone = new Uri("http://zzztttyyyqqq.grtbdbsdsa.cat");
+
+			HelperToClose.HelpView.Navigate(getItDone);
+
+
+
+			if (k.stopAlot != null) Parental.Content = k.stopAlot;
+			else Parental.Content = new StopWatch();
+
+			k.getSmallAgain();
+		}
+
+		private void MakeDonation_Tapped(object sender, TappedRoutedEventArgs e)
+		{
+			Frame Parental = (Frame)this.Parent;
+			Grid j = (Grid)Parental.Parent;
+			MainPage k = (MainPage)j.Parent;
+			k.getBig();
+			Parental.Content = new Donate();
 
 		}
 	}

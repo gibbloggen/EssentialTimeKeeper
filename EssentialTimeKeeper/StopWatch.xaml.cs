@@ -37,11 +37,11 @@ using Windows.UI;
 
 namespace EssentialTimeKeeper
 {
-    /// <summary>
-    /// An empty page that can be used on its own or navigated to within a Frame.
-    /// </summary>
-    public sealed partial class StopWatch : Page
-    {
+	/// <summary>
+	/// An empty page that can be used on its own or navigated to within a Frame.
+	/// </summary>
+	public sealed partial class StopWatch : Page
+	{
 		static DateTime StartTime = new DateTime();
 		DateTime WhenPaused = new DateTime();
 		TimeSpan PausedFor = new TimeSpan(0);
@@ -50,17 +50,66 @@ namespace EssentialTimeKeeper
 		bool pausable = false;
 
 		public StopWatch()
-        
+
 		{
 			this.InitializeComponent();
 			ApplicationView.GetForCurrentView().Title = "Version " + GetAppVersion() + " ";
 			Window.Current.SizeChanged += Current_SizeChanged;
 			btnReset.Loaded += ClockerOutput_Loaded1;
+			ColorRotatorIndependent();
 		}
 
 		private void ClockerOutput_Loaded1(object sender, RoutedEventArgs e)
 
 		{
+
+
+			double multiple = 3 - (Window.Current.Bounds.Height / 750);
+			if (multiple == 0) multiple = 1.1;
+			ClockerOutput.Height = (Window.Current.Bounds.Height / multiple);
+			ClockerOutput.Width = Window.Current.Bounds.Width;
+
+			double fsize = 5 + ((ClockerOutput.Width - 75) / 5);
+
+			if (fsize < 20) fsize = 20; else if (fsize > 500) fsize = 500;
+
+			ClockerOutput.FontSize = fsize;
+
+			btnStart.Width = 28 + (ClockerOutput.Width / 17);
+			btnPause.Width = 28 + (ClockerOutput.Width / 17);
+			btnReset.Width = 28 + (ClockerOutput.Width / 17);
+
+			Clock.Width = 28 + (ClockerOutput.Width / 17);
+			Help.Width = 28 + (ClockerOutput.Width / 17);
+			MakeDonation.Width = 28 + (ClockerOutput.Width / 17);
+
+			double higher = 14 + (Window.Current.Bounds.Height / 5);
+
+			btnStart.Height = higher;
+			btnPause.Height = higher;
+			btnReset.Height = higher;
+
+			Clock.Height = higher;
+			Help.Height = higher;
+			MakeDonation.Height = higher;
+
+			double fsize2 = 22 + ((ClockerOutput.Width - 250) / 18);
+
+			btnStart.FontSize = fsize2;
+			btnPause.FontSize = fsize2;
+			btnReset.FontSize = fsize2;
+
+			Clock.FontSize = fsize2;
+			Help.FontSize = fsize2;
+			MakeDonation.FontSize = fsize2;
+
+
+
+
+
+
+			return;
+
 
 			/*Window.Current.Bounds.Width = 1000;
 			Window.Current.Bounds.Height = 1000;
@@ -69,10 +118,40 @@ namespace EssentialTimeKeeper
 			*/
 
 
+			ClockerOutput.Height = Window.Current.Bounds.Height - (Window.Current.Bounds.Height / 1.5);
 			ClockerOutput.Width = Window.Current.Bounds.Width;
+			ClockerOutput.FontSize = 68 + ((ClockerOutput.Width - 450) / 6);
+
 			btnStart.Width = (ClockerOutput.Width / 5);
 			btnPause.Width = (ClockerOutput.Width / 5);
 			btnReset.Width = (ClockerOutput.Width / 5);
+
+			Clock.Width = (ClockerOutput.Width / 6);
+			Help.Width = (ClockerOutput.Width / 6);
+			MakeDonation.Width = (ClockerOutput.Width / 6);
+
+			btnStart.Height = (ClockerOutput.Height / 3);
+			btnPause.Height = (ClockerOutput.Height / 3);
+			btnReset.Height = (ClockerOutput.Height / 3);
+
+			Clock.Height = (ClockerOutput.Height / 3);
+			Help.Height = (ClockerOutput.Height / 3);
+			MakeDonation.Height = (ClockerOutput.Height / 3);
+
+
+
+			return;
+
+			ClockerOutput.Width = Window.Current.Bounds.Width;
+			btnStart.Width = (ClockerOutput.Width / 3);
+			btnPause.Width = (ClockerOutput.Width / 3);
+			btnReset.Width = (ClockerOutput.Width / 3);
+
+			Clock.Width = (ClockerOutput.Width / 3);
+			Help.Width = (ClockerOutput.Width / 3);
+			MakeDonation.Width = (ClockerOutput.Width / 3);
+
+			return;
 
 
 
@@ -108,42 +187,55 @@ namespace EssentialTimeKeeper
 
 		}
 
-		private void setScreen(object sender, RoutedEventArgs e)
-		{
 
-
-			ClockerOutput.Width = this.Width - 50;
-
-			btnStart.Width = (ClockerOutput.Width / 5);
-			btnPause.Width = (ClockerOutput.Width / 5);
-			btnReset.Width = (ClockerOutput.Width / 5);
-
-
-
-			if (this.Height < 175) ClockerOutput.Height = this.Height - 57;
-			else
-			{
-				ClockerOutput.Height = (this.Height - (58 + ((this.Height - 48) / 2)));
-
-			}
-			if ((ClockerOutput.Height < 175) || (ClockerOutput.Width < 650)) ClockerOutput.FontSize = 89;
-			else
-				//ClockerOutput.FontSize = (ClockerOutput.Width + ClockerOutput.Height) / 7;
-				//	ClockerOutput.FontSize = 89 + ((ClockerOutput.Width + ClockerOutput.Height - 824) /15);
-				ClockerOutput.FontSize = 89 + ((ClockerOutput.Width - 650) / 6);
-
-			//if (ClockerOutput.Height < 175) ClockerOutput.FontSize = 89;
-
-			btnStart.Height = (ClockerOutput.Height / 3) + 14;
-			btnPause.Height = (ClockerOutput.Height / 3) + 14;
-			btnReset.Height = (ClockerOutput.Height / 3) + 14;
-
-
-
-		}
 		private void Current_SizeChanged(object sender, Windows.UI.Core.WindowSizeChangedEventArgs e)
 		{
 
+			double multiple = 3 - (e.Size.Height / 750);
+			if (multiple == 0) multiple = 1.1;
+			ClockerOutput.Height = (e.Size.Height / multiple);
+			ClockerOutput.Width = e.Size.Width;
+
+			double fsize = 5 + ((ClockerOutput.Width - 75) / 5);
+
+			if (fsize < 20) fsize = 20; else if (fsize > 500) fsize = 500;
+
+			ClockerOutput.FontSize = fsize;
+
+			btnStart.Width = 28 + (ClockerOutput.Width / 17);
+			btnPause.Width = 28 + (ClockerOutput.Width / 17);
+			btnReset.Width = 28 + (ClockerOutput.Width / 17);
+
+			Clock.Width = 28 + (ClockerOutput.Width / 17);
+			Help.Width = 28 + (ClockerOutput.Width / 17);
+			MakeDonation.Width = 28 + (ClockerOutput.Width / 17);
+
+			double higher = 14 + (e.Size.Height / 5);
+
+			btnStart.Height = higher;
+			btnPause.Height = higher;
+			btnReset.Height = higher;
+
+			Clock.Height = higher;
+			Help.Height = higher;
+			MakeDonation.Height = higher;
+
+			double fsize2 = 22 + ((ClockerOutput.Width - 250) / 18);
+
+			btnStart.FontSize = fsize2;
+			btnPause.FontSize = fsize2;
+			btnReset.FontSize = fsize2;
+
+			Clock.FontSize = fsize2;
+			Help.FontSize = fsize2;
+			MakeDonation.FontSize = fsize2;
+
+
+
+
+
+
+			return;
 
 			ClockerOutput.Width = e.Size.Width - 50;
 
@@ -189,6 +281,7 @@ namespace EssentialTimeKeeper
 			TickTock();
 			btnStart.Visibility = Visibility.Collapsed;
 			btnPause.Visibility = Visibility.Visible;
+			ColorRotatorIndependent();
 
 
 
@@ -203,6 +296,7 @@ namespace EssentialTimeKeeper
 			//}
 			btnStart.Visibility = Visibility.Visible;
 			btnPause.Visibility = Visibility.Collapsed;
+			ColorRotatorIndependent();
 
 		}
 
@@ -237,11 +331,17 @@ namespace EssentialTimeKeeper
 			pausable = false;
 			btnPause.Visibility = Visibility.Collapsed;
 			btnStart.Visibility = Visibility.Visible;
+			ColorRotatorIndependent();
 
 
 		}
 
 		private void ColorRotator(object sender, TappedRoutedEventArgs e)
+		{
+			ColorRotatorIndependent();
+		}
+
+		private void ColorRotatorIndependent()
 		{
 			Random rnd = new Random();
 			Byte[] b = new Byte[4];
@@ -254,6 +354,7 @@ namespace EssentialTimeKeeper
 
 
 		}
+		/*
 
 		private void Menu_Tapped(object sender, TappedRoutedEventArgs e)
 		{
@@ -293,6 +394,41 @@ namespace EssentialTimeKeeper
 			
 				MySplitView.IsPaneOpen = !MySplitView.IsPaneOpen;
 			
+		} */
+
+		private void Clock_Tapped(object sender, TappedRoutedEventArgs e)
+		{
+			Frame Parental = (Frame)this.Parent;
+				Grid j = (Grid)Parental.Parent;
+			MainPage k = (MainPage)j.Parent;
+			k.holderOfChronograph(this);
+
+			Parental.Content = new Clocker();
+
+
+
+		}
+		private void Help_Tapped(object sender, TappedRoutedEventArgs e)
+		{
+			Frame Parental = (Frame)this.Parent;
+			Grid j = (Grid)Parental.Parent;
+			MainPage k = (MainPage)j.Parent;
+			k.holderOfChronograph(this);
+			Parental.Content = new HelpPage();
+			k.getBig();
+
+
+		}
+
+		private void MakeDonation_Tapped(object sender, TappedRoutedEventArgs e)
+		{
+			Frame Parental = (Frame)this.Parent;
+			Grid j = (Grid)Parental.Parent;
+			MainPage k = (MainPage)j.Parent;
+			k.holderOfChronograph(this);
+			Parental.Content = new Donate();
+			k.getBig();
+
 		}
 	}
 }

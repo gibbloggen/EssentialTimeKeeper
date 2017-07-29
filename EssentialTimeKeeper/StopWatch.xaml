@@ -7,79 +7,90 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
 
+	<Page.Resources>
+
+		<SolidColorBrush x:Key="TranslucentBlackBrush" Color="Black" Opacity="1.0"/>
+
+
+		<!-- This HoveringButton Template comes from this StackOverflow Thread-->
+		<!-- http://stackoverflow.com/questions/39502204/rounded-buttons-in-xaml-for-a-window-store-app/39521967#39521967  -->
+		<ControlTemplate x:Name="HoveringButton" TargetType="Button">
+
+			<Border BorderThickness="1"
+                        BorderBrush="Green" 
+                        CornerRadius="10"
+                        Padding="4"
+                        Background="{TemplateBinding Background}"
+                        
+                       
+                        Name="TheBorder"
+                        >
+
+				<VisualStateManager.VisualStateGroups>
+					<VisualStateGroup x:Name="CommonStates">
+						<VisualState x:Name="Normal">
+							<VisualState.Setters>
+								<Setter Target="MGrid.Background" Value="#FFB8B1B1"/>
+								<Setter Target="TheBorder.Background" Value="#FFB8B1B1"  />
+
+							</VisualState.Setters>
+						</VisualState>
+
+						<VisualState x:Name="PointerOver">
+							<VisualState.Setters>
+								<Setter Target="MGrid.Background" Value="Green"/>
+								<Setter Target="TheBorder.Background" Value="Green"  />
+							</VisualState.Setters>
+						</VisualState>
+
+						<VisualState x:Name="Pressed">
+							<VisualState.Setters>
+								<Setter Target="MGrid.Background" Value="Blue"/>
+								<Setter Target="TheBorder.Background" Value="Blue"  />
+							</VisualState.Setters>
+						</VisualState>
+
+						<VisualState x:Name="Disabled"/>
+
+
+					</VisualStateGroup>
+				</VisualStateManager.VisualStateGroups>
+
+				<Grid x:Name="MGrid">
+					<ContentControl Content="{TemplateBinding Content}"
+                                        VerticalContentAlignment="Center"
+                                        HorizontalAlignment="Center"
+                                        FontSize="{TemplateBinding FontSize}"
+                                        Foreground="{TemplateBinding Foreground}"
+                                         Background="{TemplateBinding Background}"/>
+				</Grid>
+
+			</Border>
+		</ControlTemplate>
+
+
+	</Page.Resources>
+
 	<Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" Name="MainGrid" Tapped="ColorRotator">
-		<RelativePanel  >
-			<Button Name="HamburgerButton" 
-                    RelativePanel.AlignLeftWithPanel="True"
-                    FontFamily="Segoe MDL2 Assets"
-                    FontSize="36" 
-                    Content="&#xE700;" 
-                    Click="HamburgerButton_Click"
-                    />
 
-			<TextBlock Name="EssentialTimeKeeper "
-                   RelativePanel.AlignHorizontalCenterWithPanel="True" Text="Stop Watch"
-                  FontSize="32" FontWeight="ExtraBold"/>
-			<!-- Text="Essential Grocer" -->
+		<StackPanel Orientation="Vertical" Margin="0,2,0,0" Tapped="ColorRotator">
+			<StackPanel Orientation="Horizontal" Name="Icons" HorizontalAlignment="Center" >
 
-			
-		</RelativePanel>
+				<Button Name="Clock" Template="{StaticResource HoveringButton}"  Margin="0,0,8,3"  Tapped="Clock_Tapped" FontFamily="WingDings"  FontSize="25" Content="&#x00B7;"></Button>
+				<Button Name="Help" Template="{StaticResource HoveringButton}"  Margin="0,0,8,3"  Tapped="Help_Tapped" FontFamily="Segoe MDL2 Assets"  FontSize="25" Content="&#xE897;"></Button>
+				<Button Name="MakeDonation" Template="{StaticResource HoveringButton}" Margin="0,0,8,0"  FontFamily="Segoe MDL2 Assets"   FontSize="25" Tapped="MakeDonation_Tapped" Content="&#xE8EC;"></Button>
 
-		<SplitView 
-                   
-                   Name="MySplitView"
-                   DisplayMode="CompactOverlay"
-                   
-                   CompactPaneLength="0"
-                     OpenPaneLength="225"
-                
-                   >
-			<SplitView.Pane>
-				<ListBox SelectionMode="Single" 
-                         Tapped="Menu_Tapped"   >
+			</StackPanel>
 
-					
-					<ListBoxItem Name="Clock">
-						<StackPanel Orientation="Horizontal">
-							<!--<TextBlock FontFamily="Segoe MDL2 Assets" FontSize="36" Text="&#xE898;" />-->
-							<TextBlock FontSize="24" Margin="20,0,0,0">Clock</TextBlock>
-						</StackPanel>
-					</ListBoxItem>
-					<ListBoxItem Name="Chronograph">
-						<StackPanel Orientation="Horizontal">
-							<!--<TextBlock FontFamily="Segoe MDL2 Assets" FontSize="36" Text="&#xE78B;" />-->
-							<TextBlock FontSize="24" Margin="20,0,0,0">Stop Watch</TextBlock>
-						</StackPanel>
-					</ListBoxItem>
-					<ListBoxItem Name="Help">
-						<StackPanel Orientation="Horizontal">
-							<!--<TextBlock FontFamily="Segoe MDL2 Assets" FontSize="36" Text="&#xE78B;" />-->
-							<TextBlock FontSize="24" Margin="20,0,0,0">Help</TextBlock>
-						</StackPanel>
-					</ListBoxItem>
-					<ListBoxItem Name="MakeDonation">
-						<StackPanel Orientation="Horizontal">
-							<!--<TextBlock FontFamily="Segoe MDL2 Assets" FontSize="36" Text="&#xE78C;" />-->
-							<TextBlock FontSize="24" Margin="20,0,0,0">Donation</TextBlock>
-						</StackPanel>
-					</ListBoxItem>
-				</ListBox>
-			</SplitView.Pane>
-			<SplitView.Content >
+			<TextBox Name="ClockerOutput" Margin="0,0,0,0"   TextWrapping="NoWrap" BorderThickness="0" Background="Green" IsReadOnly="True"  Text="00:00:00.00" VerticalAlignment="Top" TextAlignment="Center" HorizontalAlignment="Center" Width="449" FontFamily="New Courier" FontSize="89" VerticalContentAlignment="Top"/>
+			<StackPanel Orientation="Horizontal" Margin="0,2,0,0" HorizontalAlignment="Center">
+				<Button Tapped="btnStart_Tapped" Template="{StaticResource HoveringButton}" Name ="btnStart" Content="&#xE768;"  HorizontalAlignment="Left" Margin="0,0,0,0" VerticalAlignment="Top"  FontFamily="Segoe MDL2 Assets" FontSize="42"/>
+				<Button Tapped="btnPause_Tapped" Template="{StaticResource HoveringButton}" Visibility="Collapsed"   Name ="btnPause" Content= "&#xE769;" HorizontalAlignment="Left" Margin="0,0,0,0" VerticalAlignment="Top"   FontFamily="Segoe MDL2 Assets" FontSize="42"/>
+				<Button Tapped="btnReset_Tapped" Template="{StaticResource HoveringButton}" Name ="btnReset" Content="&#xE72C;" HorizontalAlignment="Left" Margin="32,0,0,0" VerticalAlignment="Top" FontFamily="Segoe MDL2 Assets" FontSize="42"/>
+			</StackPanel>
 
 
-				<StackPanel Orientation="Vertical" Margin="7,75,0,0" Tapped="ColorRotator">
-					<TextBox Name="ClockerOutput" Margin="0,0,0,0"   TextWrapping="NoWrap" BorderThickness="0" Background="Green" IsReadOnly="True"  Text="00:00:00.00" VerticalAlignment="Top" TextAlignment="Center" HorizontalAlignment="Center" Width="449" FontFamily="Times New Roman" FontSize="89"/>
-					<StackPanel Orientation="Horizontal" Margin="158,42,0,0">
-						<Button Tapped="btnStart_Tapped" Name ="btnStart" Content="&#xE768;"  HorizontalAlignment="Left" Margin="0,0,0,0" VerticalAlignment="Top"  FontFamily="Segoe MDL2 Assets" FontSize="42"/>
-						<Button Tapped="btnPause_Tapped" Visibility="Collapsed"   Name ="btnPause" Content= "&#xE769;" HorizontalAlignment="Left" Margin="0,0,0,0" VerticalAlignment="Top"   FontFamily="Segoe MDL2 Assets" FontSize="42"/>
-						<Button Tapped="btnReset_Tapped" Name ="btnReset" Content="&#xE72C;" HorizontalAlignment="Left" Margin="32,0,0,0" VerticalAlignment="Top" FontFamily="Segoe MDL2 Assets" FontSize="42"/>
-					</StackPanel>
+		</StackPanel>
 
-
-				</StackPanel>
-			</SplitView.Content>
-		</SplitView>
 	</Grid>
-	
 </Page>

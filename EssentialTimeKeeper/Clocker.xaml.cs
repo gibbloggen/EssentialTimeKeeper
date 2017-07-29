@@ -32,6 +32,7 @@ namespace EssentialTimeKeeper
 			ApplicationView.GetForCurrentView().Title = "Version " + GetAppVersion() + " ";
 			Window.Current.SizeChanged += Current_SizeChanged;
 			ClockerOutput.Loaded += ClockerOutput_Loaded1;
+			ColorRotator();
 			RunClock();
 
         }
@@ -44,7 +45,25 @@ namespace EssentialTimeKeeper
 
 			ClockerOutput.Height = Window.Current.Bounds.Height;
 			ClockerOutput.Width = Window.Current.Bounds.Width;
-			ClockerOutput.FontSize = 89 + ((ClockerOutput.Width - 450) / 6);
+			ClockerOutput.FontSize = 79 + ((ClockerOutput.Width - 450) / 6);
+
+			Chronograph.Width = 28 + (ClockerOutput.Width / 17);
+			Help.Width = 28 + (ClockerOutput.Width / 17);
+			MakeDonation.Width = 28 + (ClockerOutput.Width / 17);
+
+			double higher = 14 + (Window.Current.Bounds.Height / 5);
+
+			Chronograph.Height = higher;
+			Help.Height = higher;
+			MakeDonation.Height = higher;
+
+			double fsize2 = 22 + ((ClockerOutput.Width - 250) / 18);
+			Chronograph.FontSize = fsize2;
+			Help.FontSize = fsize2;
+			MakeDonation.FontSize = fsize2;
+
+
+
 			return;
 
 
@@ -111,10 +130,32 @@ namespace EssentialTimeKeeper
 		{
 			ClockerOutput.Height = Window.Current.Bounds.Height;
 			ClockerOutput.Width = Window.Current.Bounds.Width;
-			ClockerOutput.FontSize = 89 + ((ClockerOutput.Width - 450) / 6);
+			ClockerOutput.FontSize = 79 + ((ClockerOutput.Width - 450) / 6);
+
+		
+			Chronograph.Width = 28 + (ClockerOutput.Width / 17);
+			Help.Width = 28 + (ClockerOutput.Width / 17);
+			MakeDonation.Width = 28 + (ClockerOutput.Width / 17);
+
+			double higher = 14 + (Window.Current.Bounds.Height / 5);
+
+			Chronograph.Height = higher;
+			Help.Height = higher;
+			MakeDonation.Height = higher;
+
+			double fsize2 = 22 + ((ClockerOutput.Width - 250) / 18);
+			Chronograph.FontSize = fsize2;
+			Help.FontSize = fsize2;
+			MakeDonation.FontSize = fsize2;
+
+
+
+
+
+
 			return;
 
-			ClockerOutput.Width = e.Size.Width - 50;
+			//ClockerOutput.Width = e.Size.Width - 50;
 
 			//btnStart.Width = (ClockerOutput.Width / 5);
 			//btnPause.Width = (ClockerOutput.Width / 5);
@@ -151,48 +192,50 @@ namespace EssentialTimeKeeper
 
 			MainGrid.Background = new SolidColorBrush(color);
 			ClockerOutput.Background = new SolidColorBrush(color);
-
-
-		}
-
-
-		private void Menu_Tapped(object sender, TappedRoutedEventArgs e)
-		{
-			if (Chronograph.IsSelected)
-			{
-				Frame Parental = (Frame)this.Parent;
-
-				Parental.Content = new StopWatch();
-
-
-
-			}
-			else if (Clock.IsSelected)
-			{
-				MySplitView.IsPaneOpen = false;
-				return;
-			}
-			else if (MakeDonation.IsSelected)
-			{
-				Frame Parental = (Frame)this.Parent;
-
-				Parental.Content = new Donate();
-			}
-			else if (Help.IsSelected)
-			{
-				Frame Parental = (Frame)this.Parent;
-
-				Parental.Content = new HelpPage();
-			}
-
+			Icons.Background = new SolidColorBrush(color);
+			MainStack.Background = new SolidColorBrush(color);
 
 		}
-		private void HamburgerButton_Click(object sender, RoutedEventArgs e)
-		{
 
-			MySplitView.IsPaneOpen = !MySplitView.IsPaneOpen;
 
-		}
+		/*	private void Menu_Tapped(object sender, TappedRoutedEventArgs e)
+			{
+				if (Chronograph.IsSelected)
+				{
+					Frame Parental = (Frame)this.Parent;
+
+					Parental.Content = new StopWatch();
+
+
+
+				}
+				else if (Clock.IsSelected)
+				{
+					MySplitView.IsPaneOpen = false;
+					return;
+				}
+				else if (MakeDonation.IsSelected)
+				{
+					Frame Parental = (Frame)this.Parent;
+
+					Parental.Content = new Donate();
+				}
+				else if (Help.IsSelected)
+				{
+					Frame Parental = (Frame)this.Parent;
+
+					Parental.Content = new HelpPage();
+				}
+
+
+			}
+			private void HamburgerButton_Click(object sender, RoutedEventArgs e)
+			{
+
+				MySplitView.IsPaneOpen = !MySplitView.IsPaneOpen;
+
+			}
+			*/
 		//This was copied form this Stack Overflow Entry
 		//https://stackoverflow.com/questions/28635208/retrieve-the-current-app-version-from-package/28635481#28635481
 		public static string GetAppVersion()
@@ -206,5 +249,38 @@ namespace EssentialTimeKeeper
 
 		}
 
+		private void MakeDonation_Tapped(object sender, TappedRoutedEventArgs e)
+		{
+			Frame Parental = (Frame)this.Parent;
+			Grid j = (Grid)Parental.Parent;
+			MainPage k = (MainPage)j.Parent;
+			k.getBig();
+			Parental.Content = new Donate();
+
+		}
+
+		private void Chronograph_Tapped(object sender, TappedRoutedEventArgs e)
+		{
+			
+
+			Frame Parental = (Frame)this.Parent;
+			Grid j = (Grid)Parental.Parent;
+			MainPage k = (MainPage)j.Parent;
+
+
+			if (k.stopAlot != null ) Parental.Content = k.stopAlot;
+			else  Parental.Content = new StopWatch();
+		}
+
+		private void Help_Tapped(object sender, TappedRoutedEventArgs e)
+		{
+			Frame Parental = (Frame)this.Parent;
+			Grid j = (Grid)Parental.Parent;
+			MainPage k = (MainPage)j.Parent;
+			k.getBig();
+			Parental.Content = new HelpPage();
+
+
+		}
 	}
 }

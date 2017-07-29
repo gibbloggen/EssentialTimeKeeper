@@ -34,22 +34,19 @@ namespace EssentialTimeKeeper
 			ApplicationView.GetForCurrentView().Title = "Version " + GetAppVersion() + " ";
 			Window.Current.SizeChanged += Current_SizeChanged;
 			//ManyThanks.Visibility = Visibility.Visible;
-			makeDonation.Loaded += makeDonation_Loaded1;
+			Clock.Loaded += Clock_Loaded1;
 
 
 		}
 
-		private void makeDonation_Loaded1(object sender, RoutedEventArgs e)
+		private void Clock_Loaded1(object sender, RoutedEventArgs e)
 
 		{
 
-			makeDonation.Height = Window.Current.Bounds.Height / 5;
-			makeDonation.Width = Window.Current.Bounds.Width - 125;
-			makeDonation.FontSize = 41 + ((makeDonation.Width - 450) / 24);
-
-			double Heigher = Window.Current.Bounds.Height / 5;
+			return;
+			/*double Heigher = Window.Current.Bounds.Height / 5;
 			double Wider = Window.Current.Bounds.Width / 5;
-			double Fonter = 21 + ((makeDonation.Width - 450) / 24);
+			//double Fonter = 21 + ((makeDonation.Width - 450) / 24);
 
 			Donation1.Height = Heigher;
 			Donation1.Width = Wider;
@@ -64,7 +61,7 @@ namespace EssentialTimeKeeper
 			Donation3.FontSize = Fonter;
 
 			storeResult.Height = Heigher;
-			storeResult.Width = MakeDonation.Width / 2;
+			storeResult.Width = makeDonation.Width / 2;
 			storeResult.FontSize = Fonter / 2;
 
 			ManyThanks.Height = storeResult.Height;
@@ -73,7 +70,7 @@ namespace EssentialTimeKeeper
 
 
 			return;
-
+			*/
 
 
 
@@ -82,6 +79,8 @@ namespace EssentialTimeKeeper
 
 		private void Current_SizeChanged(object sender, Windows.UI.Core.WindowSizeChangedEventArgs e)
 		{
+			return;
+			/*
 			makeDonation.Height = Window.Current.Bounds.Height / 5;
 			makeDonation.Width = Window.Current.Bounds.Width - 125;
 			makeDonation.FontSize = 41 + ((makeDonation.Width - 450) / 24);
@@ -103,7 +102,7 @@ namespace EssentialTimeKeeper
 			Donation3.FontSize = Fonter;
 
 			storeResult.Height = Heigher ;
-			storeResult.Width = MakeDonation.Width / 2;
+			storeResult.Width = makeDonation.Width / 2;
 			storeResult.FontSize = Fonter / 2;
 
 			ManyThanks.Height = storeResult.Height;
@@ -139,7 +138,7 @@ namespace EssentialTimeKeeper
 
 			//btnStart.Height = (ClockerOutput.Height / 3) + 14;
 			//btnPause.Height = (ClockerOutput.Height / 3) + 14;
-			//btnReset.Height = (ClockerOutput.Height / 3) + 14;
+			//btnReset.Height = (ClockerOutput.Height / 3) + 14; */
 		}
 
 		//This was copied form this Stack Overflow Entry
@@ -156,46 +155,7 @@ namespace EssentialTimeKeeper
 		}
 
 
-		private void Menu_Tapped(object sender, TappedRoutedEventArgs e)
-		{
-			if (Chronograph.IsSelected)
-			{
-				Frame Parental = (Frame)this.Parent;
-
-				Parental.Content = new StopWatch();
-
-
-
-			}
-			else if (Clock.IsSelected)
-			{
-				Frame Parental = (Frame)this.Parent;
-
-				Parental.Content = new Clocker();
-
-			}
-			else if (MakeDonation.IsSelected)
-			{
-				MySplitView.IsPaneOpen = false;
-				return;
-			}
-			else if (Help.IsSelected)
-			{
-				Frame Parental = (Frame)this.Parent;
-
-				Parental.Content = new HelpPage();
-			}
-
-
-		}
-
-		private void HamburgerButton_Click(object sender, RoutedEventArgs e)
-		{
-
-			MySplitView.IsPaneOpen = !MySplitView.IsPaneOpen;
-
-		}
-
+	
 		//This came from some sort of Microsoft Tutorial
 		public async void PurchaseAddOn(string storeId)
 		{
@@ -278,6 +238,51 @@ namespace EssentialTimeKeeper
 			Donator.Visibility = Visibility.Collapsed;
 		}
 
+		private void Clock_Tapped(object sender, TappedRoutedEventArgs e)
+		{
+			Frame Parental = (Frame)this.Parent;
+			
 
+
+			Parental.Content = new Clocker();
+
+			//Frame Parental = (Frame)this.Parent;
+			Grid j = (Grid)Parental.Parent;
+			MainPage k = (MainPage)j.Parent;
+			k.getSmallAgain();
+
+
+
+
+		}
+
+
+		private void Help_Tapped(object sender, TappedRoutedEventArgs e)
+		{
+			Frame Parental = (Frame)this.Parent;
+			Grid j = (Grid)Parental.Parent;
+			MainPage k = (MainPage)j.Parent;
+			k.getBig();
+			Parental.Content = new HelpPage();
+
+
+		}
+
+		private void Chronograph_Tapped(object sender, TappedRoutedEventArgs e)
+		{
+
+
+			Frame Parental = (Frame)this.Parent;
+			Grid j = (Grid)Parental.Parent;
+			MainPage k = (MainPage)j.Parent;
+
+			
+
+
+			if (k.stopAlot != null) Parental.Content = k.stopAlot;
+			else Parental.Content = new StopWatch();
+
+			k.getSmallAgain();
+		}
 	}
 }

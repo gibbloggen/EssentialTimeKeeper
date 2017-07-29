@@ -28,12 +28,37 @@ namespace EssentialTimeKeeper
 	public sealed partial class MainPage : Page
 	{
 
-
+		public StopWatch stopAlot = null;
 
 		public MainPage()
 		{
 			this.InitializeComponent();
+			getSmall();
 			FrameWork.Content = new Clocker();
+		}
+		private void getSmall()
+		{
+			var viewer = ApplicationView.GetForCurrentView();
+			Size j = new Size(125, 125);
+			viewer.SetPreferredMinSize(j);
+			
+
+		}
+		public void getSmallAgain()
+		{
+			var viewer = ApplicationView.GetForCurrentView();
+			viewer.ExitFullScreenMode();
+		}
+		public void getBig()
+		{
+			var viewer = ApplicationView.GetForCurrentView();
+			viewer.TryEnterFullScreenMode();
+
+
+		}
+		public void holderOfChronograph(StopWatch j)
+		{
+			stopAlot = j;
 		}
 
 	}	
