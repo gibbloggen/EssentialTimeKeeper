@@ -159,9 +159,16 @@ namespace EssentialTimeKeeper
 			Frame Parental = (Frame)this.Parent;
 			Grid j = (Grid)Parental.Parent;
 			MainPage k = (MainPage)j.Parent;
-			k.getBig();
+
+			HelpPage HelperToClose = (HelpPage)Parental.Content;
+
+			Uri getItDone = new Uri("http://zzztttyyyqqq.grtbdbsdsa.cat");
+
+			HelperToClose.HelpView.Navigate(getItDone);
 			Parental.Content = new Donate();
 
+			
+			
 		}
 	}
 }

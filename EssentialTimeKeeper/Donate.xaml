@@ -85,7 +85,7 @@
 			<StackPanel Orientation="Vertical"  CornerRadius="15" Margin="175,15,175,35" BorderThickness="5" BorderBrush="Black" >
 				<TextBlock FontFamily="Courier New" FontSize="38" Text="Donate Here"  TextAlignment="Center"/>
 				<TextBlock   TextWrapping="Wrap" FontFamily="Courier New" FontSize="18" Margin="15,0,15,15" > 
-					<LineBreak /> Your donations are greatly appreciated.  They enable us to bring you new products, as well as product enhancements.  Future developments get fueld by your contributions.
+					<LineBreak /> Your donations are greatly appreciated.  They enable us to bring you new products, as well as product enhancements.  Future developments get fueled by your contributions.
 					
 						
 						<LineBreak /><LineBreak />   We are trying to make this a self sustaining entity, but we are a long way away from this.  Currently

@@ -32,7 +32,7 @@ namespace EssentialTimeKeeper
 		{
 			this.InitializeComponent();
 			ApplicationView.GetForCurrentView().Title = "Version " + GetAppVersion() + " ";
-			Window.Current.SizeChanged += Current_SizeChanged;
+			//Window.Current.SizeChanged += Current_SizeChanged;
 			//ManyThanks.Visibility = Visibility.Visible;
 			Clock.Loaded += Clock_Loaded1;
 
@@ -77,7 +77,7 @@ namespace EssentialTimeKeeper
 			
 		}
 
-		private void Current_SizeChanged(object sender, Windows.UI.Core.WindowSizeChangedEventArgs e)
+		/*private void Current_SizeChanged(object sender, Windows.UI.Core.WindowSizeChangedEventArgs e)
 		{
 			return;
 			/*
@@ -138,8 +138,8 @@ namespace EssentialTimeKeeper
 
 			//btnStart.Height = (ClockerOutput.Height / 3) + 14;
 			//btnPause.Height = (ClockerOutput.Height / 3) + 14;
-			//btnReset.Height = (ClockerOutput.Height / 3) + 14; */
-		}
+			//btnReset.Height = (ClockerOutput.Height / 3) + 14; 
+		}*/
 
 		//This was copied form this Stack Overflow Entry
 		//https://stackoverflow.com/questions/28635208/retrieve-the-current-app-version-from-package/28635481#28635481
@@ -262,7 +262,7 @@ namespace EssentialTimeKeeper
 			Frame Parental = (Frame)this.Parent;
 			Grid j = (Grid)Parental.Parent;
 			MainPage k = (MainPage)j.Parent;
-			k.getBig();
+			
 			Parental.Content = new HelpPage();
 
 

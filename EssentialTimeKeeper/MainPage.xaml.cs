@@ -29,12 +29,18 @@ namespace EssentialTimeKeeper
 	{
 
 		public StopWatch stopAlot = null;
+		public Size holdSmallSize = new Size();
 
 		public MainPage()
 		{
 			this.InitializeComponent();
 			getSmall();
 			FrameWork.Content = new Clocker();
+			var av = Windows.UI.ViewManagement.ApplicationView.GetForCurrentView();
+			var bounds = av.VisibleBounds;
+
+			holdSmallSize = new Size(av.VisibleBounds.Width, av.VisibleBounds.Height);
+
 		}
 		private void getSmall()
 		{
@@ -47,12 +53,32 @@ namespace EssentialTimeKeeper
 		public void getSmallAgain()
 		{
 			var viewer = ApplicationView.GetForCurrentView();
-			viewer.ExitFullScreenMode();
+			viewer.TryResizeView(holdSmallSize);
 		}
 		public void getBig()
 		{
+
+			//https://stackoverflow.com/questions/35247320/how-to-maximize-a-uwp-window-not-fullscreen/45388536#45388536
+			/*
 			var viewer = ApplicationView.GetForCurrentView();
 			viewer.TryEnterFullScreenMode();
+			*/
+
+
+			var av = Windows.UI.ViewManagement.ApplicationView.GetForCurrentView();
+			var di = Windows.Graphics.Display.DisplayInformation.GetForCurrentView();
+			var bounds = av.VisibleBounds;
+
+			holdSmallSize = new Size(av.VisibleBounds.Width, av.VisibleBounds.Height);
+
+
+
+			var factor = di.RawPixelsPerViewPixel;
+			Size size = new Size(di.ScreenWidthInRawPixels, di.ScreenHeightInRawPixels);
+			size.Height -= 100;
+			size.Width -= 100;
+			av.TryResizeView(size);
+
 
 
 		}
